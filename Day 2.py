@@ -1,0 +1,6 @@
+print("Welcome to Tip Calcualor!")
+Bill=float(input("What was the Total Bill:   $"))
+Tip=int(input("How much tip would you like to give? 10,12, or 15?"))
+Split=int(input("How many people to split the bill"))
+share=round(Bill*(1+Tip/100)/Split,2)
+print(f"Each person should pay: ${share}")
