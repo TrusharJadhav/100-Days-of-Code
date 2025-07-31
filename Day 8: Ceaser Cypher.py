@@ -1,4 +1,5 @@
 import string
+
 alphabets=[]
 str=string.ascii_lowercase
 for letter in str:
