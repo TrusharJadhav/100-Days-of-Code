@@ -13,6 +13,3 @@ def is_leap_year(year):
     
 
 print(is_leap_year(int(input(("Enter Year to Check: ")))))
-            
-        
-        

@@ -1,3 +1,7 @@
+from art import *
+print(text2art("CALC"))
+
+
 def operation(a,b,ops):
     if ops=="/":
         c=a/b
@@ -9,15 +13,27 @@ def operation(a,b,ops):
         c=a-b
     return c
 
+
+a=float(input("Enter First number: "))
+
+def calculator(a):
+    ops=input("What Operation you want to perform Select \n* \n/ \n+ \n-  :    ")
+    b=float(input("Enter second number: "))
+    ans=operation(a,b,ops)
+    print(f"{a}{ops}{b} = {ans}")
+    return ans
+ans= calculator(a)
 should_continue="y"
-ans=0
-while should_continue=="y" or should_continue=="n":
-    if should_continue=="n":
+
+while should_continue=="y"or should_continue=="n":
+    should_continue = input(f"Do you want to continue operation with {ans} \n Select 'y' for contnue, \n Select 'n' to start new operation, \n Select any key to exit ")
+    if should_continue=="y":
+        ans=calculator(ans)
+    elif should_continue=="n":
         a=float(input("Enter First number: "))
-        ops=input("What Operation you want to perform Select \n* \n/ \n+ \n- \n")
-        b=float(input("Enter second number: "))
-        ans=operation(a,b,ops)
-        print(f"{a}{ops}{b} = {ans}")
-        should_continue=input(f"Do you want to continue operation with {ans} \n Select 'y' for contnue, \n Select 'n' to start new operation ")
-    elif should_continue=="y":
-        pass
+        ans=calculator(a)
+    else:
+        print("*"*30+" THANKS FOR USING CALCULATOR "+"*"*30)
+        exit()
+    
+
