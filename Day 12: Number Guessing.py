@@ -1,6 +1,6 @@
 from art import *
 import random
-print("Number Guessing Grouping")
+print(text2art("Number Guessing Grouping"))
 diff_level=str(input("Chosse Difficulty Level,'Easy' or 'Hard'").lower())
 print("Guess Number between 1 & 100")
 
