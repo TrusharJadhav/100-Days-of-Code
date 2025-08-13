@@ -1,14 +1,13 @@
 from data import question_data
 from question_model import Question
-from quiz_brain import Quizbrain
-Question_bank=[]
-for q in question_data:
-    text=q["text"]
-    ans=q["answer"]
-    new_questiom=Question(text,ans)
-    Question_bank.append(new_questiom)
-quiz=Quizbrain(Question_bank)
+from Quiz_brain import Quizbrain
+question_bank=[]
+for question in question_data:
+    que=question["text"]
+    ans=question["answer"]
+    question_bank.append(Question(que,ans))
+
+quiz=Quizbrain(question_bank)
+quiz.next_question
 
 
-print(Question_bank[0].question)
-quiz.next_question()
