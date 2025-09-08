@@ -27,7 +27,7 @@ while game_is_on:
  
 #collusion with food
     if snake.head.distance(food) <15:
-        score+=1
+        
         food.refresh()
 
 
