@@ -25,11 +25,20 @@ while game_is_on:
     time.sleep(.1)
     snake.move()
  
-#collusion with food
+    #collusion with food
     if snake.head.distance(food) <15:
-        
+        score.increase_score()    
+        snake.increase_snake()    
         food.refresh()
-
+    #collusion with Wall
+    if snake.head.xcor()>280 or snake.head.xcor()<-280 or snake.head.ycor()>280 or snake.head.ycor()<-280:
+        game_is_on=False
+        score.game_over()
+    #Collusion with Tail
+    for seg in snake.segments[1:]:
+        if snake.head.distance(seg)<10:
+            game_is_on=False
+            score.game_over()
 
 
 
