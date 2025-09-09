@@ -15,18 +15,14 @@ scorecard1.goto(150,260)
 scorecard2=Scorecard()
 scorecard2.goto(-150,260)
 ball.setheading(random.randint(0,45))
-for i in range(20):
-    net=Turtle("square")
-    net.color("white")
-    net.shapesize(stretch_wid=1,stretch_len=0.1)
-    net.penup()
-    net.goto(0,300-(i*30))
-paddle1=Paddle()
-paddle1.goto(350,0)
-paddle2=Paddle()
-paddle2.goto(-350,0)
-
-
+# for i in range(20):
+#     net=Turtle("square")
+#     net.color("white")
+#     net.shapesize(stretch_wid=1,stretch_len=0.1)
+#     net.penup()
+#     net.goto(0,300-(i*30))
+paddle1=Paddle((380,0))
+paddle2=Paddle((-380,0))
 screen.update()
 screen.listen()
 game_is_on=True
@@ -39,22 +35,18 @@ while game_is_on:
     screen.onkey(lambda:paddle2.sety(paddle2.ycor()+20),"a")
     screen.onkey(lambda:paddle2.sety(paddle2.ycor()-20),"z")
     #collision with paddle
-    if (ball.distance(paddle1)<30 and ball.xcor()>340) or (ball.distance(paddle2)<30 and ball.xcor()<-340):
+    if (ball.distance(paddle1)<30 and ball.xcor()>330) or (ball.distance(paddle2)<30 and ball.xcor()<-330):
         ball.setheading(180-ball.heading())
     #collision with wall
-    if ball.ycor()>290 or ball.ycor()<-290:
+    if ball.ycor()>280 or ball.ycor()<-280:
         ball.setheading(-ball.heading())
     #missed by paddle
     if ball.xcor()>390:
         scorecard2.update_score()
-        time.sleep(2)
-        ball.goto(0,0)
-        ball.setheading(random.randint(0,360))
+        ball.reset_ball()
     if ball.xcor()<-390:
         scorecard1.update_score()
-        time.sleep(2)
-        ball.goto(0,0)
-        ball.setheading(random.randint(0,360))
+        ball.reset_ball()
     if scorecard1.score==5 or scorecard2.score==5:
         game_is_on=False
         ball.hideturtle()
