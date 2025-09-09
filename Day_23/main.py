@@ -23,14 +23,12 @@ while game_is_on:
     #level 
     if player.ycor()==280:
         scoreboard.update_score()
-        player.goto(0,-280)
+        player.goto(0,-300)
     screen.update()
     #collusion with cars
     for car in cars.cars:
         if player.distance(car)<20:
-            print("game over")
-            scoreboard.goto(0,0)
-            scoreboard.write("Game Over!",align="center",font=("Arial",30,"normal"))
+            scoreboard.game_over()
             game_is_on=False
 
 
