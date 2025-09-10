@@ -33,15 +33,16 @@ while game_is_on:
     #collusion with Wall
     if snake.head.xcor()>280 or snake.head.xcor()<-280 or snake.head.ycor()>280 or snake.head.ycor()<-280:
         game_is_on=False
+        score.update_high_score()
         score.game_over()
     #Collusion with Tail
     for seg in snake.segments[1:]:
         if snake.head.distance(seg)<10:
             game_is_on=False
+            score.update_high_score()
             score.game_over()
 
-    #High Score
-    score.high_score()
+
 
 
 
