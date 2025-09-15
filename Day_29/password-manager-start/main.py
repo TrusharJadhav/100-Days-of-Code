@@ -58,14 +58,14 @@ web=Label(text="Website")
 web.grid(row=1,column=0)
 website = Entry(width=40)
 website.focus()
-website.insert(END, string="")
+website.insert(0, string="")
 website.grid(row=1,column=1,columnspan=2)
 
 
 email_label=Label(text="Email")
 email_label.grid(row=2,column=0)
 email = Entry(width=40)
-email.insert(END, string="jadhavtrushar@gmail.com")
+email.insert(0, string="jadhavtrushar@gmail.com")
 email.grid(row=2,column=1,columnspan=2)
 
 
