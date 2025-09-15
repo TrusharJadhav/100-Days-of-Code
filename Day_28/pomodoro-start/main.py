@@ -1,5 +1,6 @@
 from tkinter import *
 import time
+import math
 # ---------------------------- CONSTANTS ------------------------------- #
 PINK = "#e2979c"
 RED = "#e7305b"
@@ -9,22 +10,65 @@ FONT_NAME = "Courier"
 WORK_MIN = 25
 SHORT_BREAK_MIN = 5
 LONG_BREAK_MIN = 20
-
+reps=0
+timer=None
 # ---------------------------- TIMER RESET ------------------------------- # 
+def reset_timer():
+    window.after_cancel(timer)
+    label.config(text="Timer",fg=GREEN)
+    canvas.itemconfig(timer_text, text="00:00")
+    label_tick.config(text="")
+    global reps
+    reps=0
 
+    
+
+    print("Timer Stopped")
 # ---------------------------- TIMER MECHANISM ------------------------------- # 
 
-# ---------------------------- COUNTDOWN MECHANISM ------------------------------- # 
 def start_timer():
-    counter(5)
+    global reps
+    reps+=1
+    work_sec=WORK_MIN*60
+    short_break_sec=SHORT_BREAK_MIN*60
+    long_break_sec=LONG_BREAK_MIN*60
+    if reps%8==0:
+        label.config(text="LONG BREAK ☺️",fg=RED)
+        count_down(long_break_sec)
+    elif reps%2==0:
+        label.config(text="SHORT BREAK ☺️",fg=PINK)
+        count_down(short_break_sec)
+    else:
+        label.config(text="WORK SESSION",fg=GREEN)
+        count_down(work_sec)
+    
+        
 
-def counter(count):
-    print(count)
-    canvas.itemconfig(timer_text,text=count)
-    while count>0:
-        window.after(1000,counter,count-1)
-def reset_timer():
-    print("Timer Stopped")
+        
+
+
+
+
+# ---------------------------- COUNTDOWN MECHANISM ------------------------------- # 
+def count_down(count):
+    count_min=math.floor(count/60)
+    count_sec=count%60
+    if count_sec<10:
+        count_sec=f"0{count_sec}"
+
+    canvas.itemconfig(timer_text,text=f"{count_min}:{count_sec}")
+    if count>0:
+        global timer
+        timer=window.after(1000,count_down,count-1)
+    elif count==0:
+        start_timer()    
+        print(count)
+        if reps%2==0:
+            tick=int(reps/2)
+            label_tick.config(text="✅"*tick)
+
+
+
 
 
 # ---------------------------- UI SETUP ------------------------------- #
@@ -39,7 +83,7 @@ canvas.grid(row=1,column=1)
 
 
 
-label_tick=Label(text="✅",fg=GREEN,bg=YELLOW,font=("Aerial",18,"bold"))
+label_tick=Label(fg=GREEN,bg=YELLOW,font=("Aerial",18,"bold"))
 label_tick.grid(row=2,column=1)
 
 
