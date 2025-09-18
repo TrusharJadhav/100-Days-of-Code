@@ -2,7 +2,7 @@ import smtplib
 import random
 import datetime as dt
 email="jadhavtrushar@gmail.com"
-password="emoe sobp gjij zrbz"
+password=""
 data=[]
 with open("quotes.txt","r") as file:
     data=file.readlines()
